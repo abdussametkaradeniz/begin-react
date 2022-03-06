@@ -2,7 +2,7 @@ import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 class Collapse extends React.Component {
-    constructor(){
+    /* constructor(){
         super();
         this.state={
             showContent : false
@@ -12,12 +12,13 @@ class Collapse extends React.Component {
         //android programlamadaki bind ile aynı. Objeye bind 
         //ederek ulaşıyoruz. Eğer yapmazsak buradaki this 
         //bizim showMore altındaki thise undefined gönderiyor.
-    }
+    } */
 
     //tıklandığında state değiştirecek olan fonksiyonumuz
     /* showMore(){
         this.setState({showContent:true})       
     } */
+    state={showContent : false}
 
     showMore = () => {
         this.setState({showContent : !this.state.showContent})
@@ -30,12 +31,14 @@ class Collapse extends React.Component {
         return (            
             <div>             
                 <button className="btn btn-primary w-100" onClick={this.showMore}>     
-                    card title
+                 {/*    {this.props.children.props.cardTitle} */}
+                {React.Children.map(this.props.children,children => children.props.cardTitle)}
                 </button>
                 {
                     this.state.showContent ? (
                         <div className="collapse show ">                    
-                            {this.props.children}                        
+                          {/*   {this.props.children}  */}
+                            {React.Children.map(this.props.children,children => children)}              
                         </div>
                     ): null
                 }               
